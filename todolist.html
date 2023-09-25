@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>To-Do List with Checkboxes</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #todo-list {
+            width: 300px;
+            margin: 0 auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li:hover{
+            background-color: gray;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        label {
+            cursor: pointer;
+        }
+        button {
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- <H1>to do list app</H1> -->
+    <div id="todo-list" style="background-color: aqua;text-align: center; margin-top:100px; height:200px;padding:1px;
+    width: 400px;">
+        <h2 style="margin-top: 100px;">To-Do List</h2>
+        <input type="text" id="task" placeholder="Enter a task">
+        <button onclick="addTask()">Add</button>
+        <ul id="task-list">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("task");
+            var taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            var taskList = document.getElementById("task-list");
+            var li = document.createElement("li");
+            li.innerHTML = `
+                
+            
+                <label>
+                    <input type="checkbox" onclick="toggleTaskCompletion(this)"> ${taskText}
+                </label>
+                <button onclick="removeTask(this)"><span class="material-symbols-outlined">
+delete
+</span></button>`;
+              
+            taskList.appendChild(li);
+
+            
+            taskInput.value = "";
+        }
+
+        function removeTask(button) {
+            var taskList = document.getElementById("task-list");
+            var li = button.parentElement;
+            taskList.removeChild(li);
+        }
+         function editTask(button){
+            var taskList = document.getElementById("task-list");
+            var li = button.parentElement;
+            taskList.removeChild(li);
+         2
+         }
+        function toggleTaskCompletion(checkbox) {
+            var li = checkbox.parentElement.parentElement;
+            li.classList.toggle("completed");
+        }
+    </script>
+</body>
+</html>
+
+
